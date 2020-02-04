@@ -1,9 +1,20 @@
+"""Code to handle http requests from Michelangelo's machines.
+"""
+
 import pickle
 
+
 @app.route('/summary', methods=['POST'])
-"""Receive and process a request for classification of one image."""
+"""Receive and process a request for classification of one image.
+
+Sample message containing URL for one image:
+
+{
+	"image": "https://michelangelostestbucket.s3.us-west-2.amazonaws.com/8bf0322348cc11e7e3cc98325fbfcaa1"
+}
+"""
 def summary():
-    url = request['url']
+    url = request['image']
     
     try:
         message = handle_one_url(url)
@@ -15,10 +26,20 @@ def summary():
 
 
 @app.route('/batch_img_summary', methods=['POST'])
-"""Receive and process a request for classification of a batch of images."""
+"""Receive and process a request for classification of a batch of images.
+
+Sample message :
+
+{
+	"images": [
+		"https://michelangelostestbucket.s3.us-west-2.amazonaws.com/8bf0322348cc11e7e3cc98325fbfcaa1",
+		"https://michelangelostestbucket.s3.us-west-2.amazonaws.com/b46c5e2c17813f956df74118d60cfff7",
+	]
+}
+"""
+
 def batch_img_summary():
-    url_dict = request['url_dict']
-    urls = pull_out_urls(url_dict)
+    urls = request['images']
     
     try:
         responses = []
