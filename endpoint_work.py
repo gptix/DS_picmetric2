@@ -2,7 +2,7 @@
 """
 
 import pickle
-
+import requests
 
 @app.route('/summary', methods=['POST'])
 """Receive and process a request for classification of one image.
@@ -37,7 +37,6 @@ Sample message :
 	]
 }
 """
-
 def batch_img_summary():
     urls = request['images']
     
@@ -50,7 +49,7 @@ def batch_img_summary():
     except:
          message = 'Error from predictor: " + e
 
-    return (message)
+    return f"{'responses' : {responses}}"
 
 
 def handle_one_URL(url):
@@ -60,8 +59,9 @@ def handle_one_URL(url):
 
 def process_one_image(url)
 """Provide a URL to the classifier, and expect pickled response."""
-# foo
-return foo(url)
+# TODO: figure out how to call model on url
+message = "{'frog' : 'True"}"
+return message
 
 
 def convert_answer_to_json(answer):
