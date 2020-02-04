@@ -1,3 +1,5 @@
+import pickle
+
 @app.route('/summary', methods=['POST'])
 """Receive and process a request for classification of one image."""
 def summary():
@@ -38,10 +40,11 @@ def handle_one_URL(url):
 def process_one_image(url)
 """Provide a URL to the classifier, and expect pickled response."""
 # foo
-pass
+return foo(url)
 
 
 def convert_answer_to_json(answer):
-"""Convert prediction from predictor to JSON, for delivery to caller to endpoint."""
-# goo
-pass
+"""Convert prediction from predictor response, which should be a
+JSON object in pickled data format, to JSON. This is for delivery to 
+the caller to one of our endpoints."""
+return pickle.loads(answer)
